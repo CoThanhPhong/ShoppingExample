@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Chi Tiết Sản Phẩm</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .detail-container { display: flex; gap: 30px; margin-top: 20px; }
+        .detail-container img { width: 300px; height: 300px; object-fit: cover; border-radius: 8px; }
+        .btn { padding: 8px 16px; text-decoration: none; border-radius: 4px; display: inline-block; border: none; cursor: pointer; }
+        .btn-secondary { background: #6c757d; color: white; }
+        .btn-success { background: #28a745; color: white; }
+    </style>
+</head>
+<body>
+
+    <!-- Nút điều hướng qua lại -->
+    <a href="/" class="btn btn-secondary">&larr; Quay lại danh sách</a>
+    <a href="/cart" class="btn btn-secondary">Xem giỏ hàng</a>
+
+    <div class="detail-container">
+        <img src="<%= product.image %>" alt="<%= product.name %>">
+        <div>
+            <h2><%= product.name %></h2>
+            <h3 style="color: #d9534f;">Giá: <%= product.price.toLocaleString('vi-VN') %> VNĐ</h3>
+            <p><strong>Mô tả:</strong> <%= product.description %></p>
+            
+            <form action="/cart/add/<%= product._id %>" method="POST">
+                <button type="submit" class="btn btn-success">Thêm vào giỏ hàng</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
