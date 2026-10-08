@@ -1,0 +1,129 @@
+$kind: http-request
+url: http://127.0.0.1:3000/api/products
+method: POST
+body:
+  type: json
+  content: "[\r
+
+    \  {\r
+
+    \    \"name\": \"MacBook Air M2 13 inch\",\r
+
+    \    \"price\": 26990000,\r
+
+    \    \"description\": \"Apple M2 chip 8-core CPU, 8GB RAM, 256GB SSD. Thiết kế siêu mỏng nhẹ, pin sử dụng cả ngày.\",\r
+
+    \    \"image\": \"https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=500&q=80\"\r
+
+    \  },\r
+
+    \  {\r
+
+    \    \"name\": \"Laptop Dell XPS 13 Plus\",\r
+
+    \    \"price\": 38500000,\r
+
+    \    \"description\": \"Intel Core i7-1360P, 16GB RAM, 512GB SSD, Màn hình 13.4 inch OLED 3.5K cảm ứng sang trọng.\",\r
+
+    \    \"image\": \"https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&w=500&q=80\"\r
+
+    \  },\r
+
+    \  {\r
+
+    \    \"name\": \"ASUS ROG Zephyrus G14\",\r
+
+    \    \"price\": 32990000,\r
+
+    \    \"description\": \"AMD Ryzen 7 7735HS, RTX 4060 8GB, 16GB RAM, 512GB SSD, Màn hình 165Hz chuẩn Gaming.\",\r
+
+    \    \"image\": \"https://images.unsplash.com/photo-1603302576837-37561b2e2302?auto=format&fit=crop&w=500&q=80\"\r
+
+    \  },\r
+
+    \  {\r
+
+    \    \"name\": \"Lenovo ThinkPad X1 Carbon Gen 11\",\r
+
+    \    \"price\": 41000000,\r
+
+    \    \"description\": \"Intel Core i7-1355U, 16GB RAM, 1TB SSD, Độ bền chuẩn quân đội, bàn phím gõ cực êm.\",\r
+
+    \    \"image\": \"https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?auto=format&fit=crop&w=500&q=80\"\r
+
+    \  },\r
+
+    \  {\r
+
+    \    \"name\": \"HP Pavilion 15\",\r
+
+    \    \"price\": 15490000,\r
+
+    \    \"description\": \"Intel Core i5-1335U, 8GB RAM, 512GB SSD, Màn hình 15.6 inch FHD. Lựa chọn tối ưu cho sinh viên.\",\r
+
+    \    \"image\": \"https://images.unsplash.com/photo-1541807084-5c52b6b3adef?auto=format&fit=crop&w=500&q=80\"\r
+
+    \  },\r
+
+    \  {\r
+
+    \    \"name\": \"iPhone 15 Pro Max 256GB\",\r
+
+    \    \"price\": 29990000,\r
+
+    \    \"description\": \"Chip A17 Pro, Khung vỏ Titanium, Camera Zoom quang 5x, Cổng kết nối USB-C mới.\",\r
+
+    \    \"image\": \"https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=500&q=80\"\r
+
+    \  },\r
+
+    \  {\r
+
+    \    \"name\": \"Samsung Galaxy S24 Ultra\",\r
+
+    \    \"price\": 27990000,\r
+
+    \    \"description\": \"Snapdragon 8 Gen 3 for Galaxy, Tích hợp Galaxy AI, Bút S-Pen, Camera 200MP xuất sắc.\",\r
+
+    \    \"image\": \"https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?auto=format&fit=crop&w=500&q=80\"\r
+
+    \  },\r
+
+    \  {\r
+
+    \    \"name\": \"Xiaomi 14 Ultra\",\r
+
+    \    \"price\": 24990000,\r
+
+    \    \"description\": \"Ống kính Leica cao cấp, Snapdragon 8 Gen 3, Sạc nhanh 90W, Màn hình AMOLED 2K 120Hz.\",\r
+
+    \    \"image\": \"https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=500&q=80\"\r
+
+    \  },\r
+
+    \  {\r
+
+    \    \"name\": \"Google Pixel 8 Pro\",\r
+
+    \    \"price\": 21500000,\r
+
+    \    \"description\": \"Chip Google Tensor G3, Camera AI thông minh, Trải nghiệm Android thuần mượt mà.\",\r
+
+    \    \"image\": \"https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=500&q=80\"\r
+
+    \  },\r
+
+    \  {\r
+
+    \    \"name\": \"OPPO Reno11 Pro 5G\",\r
+
+    \    \"price\": 11990000,\r
+
+    \    \"description\": \"Chuyên gia chân dung nét đỉnh cao, Thiết kế mặt lưng sóng biển độc đáo, Sạc Siêu Nhanh 80W.\",\r
+
+    \    \"image\": \"https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=500&q=80\"\r
+
+    \  }\r
+
+    ]"
+order: 1967

@@ -2,42 +2,97 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Giỏ Hàng</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ Hàng Của Bạn</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
-        th { background-color: #f4f4f4; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #f8f9fa; color: #333; padding: 20px; }
+        .nav-bar { margin-bottom: 20px; }
+        .btn { display: inline-block; padding: 8px 16px; text-decoration: none; border-radius: 5px; cursor: pointer; border: none; font-size: 14px; font-weight: 500; }
+        .btn-secondary { background: #6c757d; color: white; }
+        .btn-secondary:hover { background: #5a6268; }
+        .btn-danger { background: #dc3545; color: white; }
+        .btn-danger:hover { background: #bd2130; }
+        .btn-warning { background: #ffc107; color: #212529; }
+        .btn-warning:hover { background: #e0a800; }
+        
+        .cart-container { background: white; padding: 25px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th, td { border-bottom: 1px solid #dee2e6; padding: 12px; text-align: left; }
+        th { background-color: #e9ecef; }
+        
+        .cart-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 25px; padding-top: 15px; border-top: 2px solid #eee; }
+        .total-price { font-size: 20px; font-weight: bold; color: #dc3545; }
     </style>
 </head>
 <body>
-    <a href="/">← Tiếp tục mua sắm</a>
-    <h2>Giỏ Hàng Của Bạn</h2>
 
-    <% if (cart.length === 0) { %>
-        <p>Giỏ hàng hiện đang trống.</p>
-    <% } else { %>
-        <table>
-            <thead>
-                <tr>
-                    <th>Tên sản phẩm</th>
-                    <th>Giá</th>
-                    <th>Số lượng</th>
-                    <th>Thành tiền</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% cart.forEach(item => { %>
+    <!-- Nút quay lại trang mua sắm -->
+    <div class="nav-bar">
+        <a href="/" class="btn btn-secondary">&larr; Tiếp tục mua sắm</a>
+    </div>
+
+    <div class="cart-container">
+        <h2>Giỏ Hàng Của Bạn</h2>
+
+        <% if (cart.length > 0) { %>
+            <table>
+                <thead>
                     <tr>
-                        <td><%= item.name %></td>
-                        <td><%= item.price.toLocaleString() %> VNĐ</td>
-                        <td><%= item.quantity %></td>
-                        <td><%= (item.price * item.quantity).toLocaleString() %> VNĐ</td>
+                        <th>Sản phẩm</th>
+                        <th>Đơn giá</th>
+                        <th>Số lượng</th>
+                        <th>Thành tiền</th>
+                        <th>Thao tác</th>
                     </tr>
-                <% }) %>
-            </tbody>
-        </table>
-        <h3>Tổng tiền: <%= totalAmount.toLocaleString() %> VNĐ</h3>
-    <% } %>
+                </thead>
+                <tbody>
+                    <% cart.forEach(item => { %>
+                        <tr>
+                            <td><strong><%= item.name %></strong></td>
+                            <td><%= item.price.toLocaleString('vi-VN') %> VNĐ</td>
+                            <td><%= item.quantity %></td>
+                            <td><%= (item.price * item.quantity).toLocaleString('vi-VN') %> VNĐ</td>
+                            <td>
+                                <!-- Nút xóa 1 sản phẩm khỏi giỏ hàng -->
+                                <form action="/cart/remove/<%= item.id %>" method="POST" style="display:inline;">
+                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này?')">Xóa</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+
+            <div class="cart-footer">
+                <div class="total-price">
+                    Tổng cộng: <%= totalAmount.toLocaleString('vi-VN') %> VNĐ
+                </div>
+                
+                <!-- Nút xóa tất cả sản phẩm trong giỏ hàng -->
+                <form action="/cart/clear" method="POST">
+                    <button type="submit" class="btn btn-warning" onclick="return confirm('Bạn có chắc chắn muốn xóa toàn bộ giỏ hàng?')">Xóa toàn bộ giỏ hàng</button>
+                </form>
+            </div>
+        <% } else { %>
+            <p style="margin-top: 20px; font-size: 16px; color: #6c757d;">Giỏ hàng của bạn đang trống!</p>
+        <% } %>
+    </div>
+
+    <!-- Script hiển thị alert -->
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const message = urlParams.get('message');
+            if (message) {
+                alert(message);
+                urlParams.delete('message');
+                const newSearch = urlParams.toString();
+                const newUrl = window.location.pathname + (newSearch ? '?' + newSearch : '');
+                window.history.replaceState({}, document.title, newUrl);
+            }
+        });
+    </script>
+
 </body>
 </html>

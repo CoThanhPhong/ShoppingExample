@@ -2,34 +2,68 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chi Tiết Sản Phẩm</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        .detail-container { display: flex; gap: 30px; margin-top: 20px; }
-        .detail-container img { width: 300px; height: 300px; object-fit: cover; border-radius: 8px; }
-        .btn { padding: 8px 16px; text-decoration: none; border-radius: 4px; display: inline-block; border: none; cursor: pointer; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #f8f9fa; color: #333; padding: 20px; }
+        .nav-bar { margin-bottom: 20px; display: flex; gap: 10px; }
+        .btn { display: inline-block; padding: 8px 16px; text-decoration: none; border-radius: 5px; cursor: pointer; border: none; font-size: 14px; font-weight: 500; }
         .btn-secondary { background: #6c757d; color: white; }
+        .btn-secondary:hover { background: #5a6268; }
+        .btn-primary { background: #007bff; color: white; }
         .btn-success { background: #28a745; color: white; }
+        .detail-card { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); display: flex; gap: 40px; flex-wrap: wrap; }
+        .detail-card img { width: 350px; height: 350px; object-fit: cover; border-radius: 8px; }
+        .detail-info { flex: 1; min-width: 300px; }
+        .detail-info h2 { font-size: 26px; margin-bottom: 15px; color: #222; }
+        .price { font-size: 24px; color: #dc3545; font-weight: bold; margin-bottom: 20px; }
+        .description { font-size: 15px; line-height: 1.6; color: #555; margin-bottom: 25px; }
+        .cart-form { display: flex; align-items: center; gap: 15px; }
+        .qty-input { width: 70px; padding: 8px; text-align: center; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; }
     </style>
 </head>
 <body>
 
-    <!-- Nút điều hướng qua lại -->
-    <a href="/" class="btn btn-secondary">&larr; Quay lại danh sách</a>
-    <a href="/cart" class="btn btn-secondary">Xem giỏ hàng</a>
+    <!-- Các nút chuyển hướng qua lại -->
+    <div class="nav-bar">
+        <a href="/" class="btn btn-secondary">&larr; Quay lại danh sách</a>
+        <a href="/cart" class="btn btn-primary">🛒 Xem giỏ hàng</a>
+    </div>
 
-    <div class="detail-container">
+    <div class="detail-card">
         <img src="<%= product.image %>" alt="<%= product.name %>">
-        <div>
+        <div class="detail-info">
             <h2><%= product.name %></h2>
-            <h3 style="color: #d9534f;">Giá: <%= product.price.toLocaleString('vi-VN') %> VNĐ</h3>
-            <p><strong>Mô tả:</strong> <%= product.description %></p>
+            <div class="price"><%= product.price.toLocaleString('vi-VN') %> VNĐ</div>
             
-            <form action="/cart/add/<%= product._id %>" method="POST">
-                <button type="submit" class="btn btn-success">Thêm vào giỏ hàng</button>
+            <p class="description">
+                <strong>Mô tả sản phẩm:</strong><br>
+                <%= product.description %>
+            </p>
+
+            <form action="/cart/add/<%= product._id %>" method="POST" class="cart-form">
+                <label for="quantity"><strong>Số lượng:</strong></label>
+                <input type="number" id="quantity" name="quantity" value="1" min="1" class="qty-input" required>
+                <button type="submit" class="btn btn-success">+ Thêm vào giỏ hàng</button>
             </form>
         </div>
     </div>
+
+    <!-- Script hiển thị alert -->
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const message = urlParams.get('message');
+            if (message) {
+                alert(message);
+                urlParams.delete('message');
+                const newSearch = urlParams.toString();
+                const newUrl = window.location.pathname + (newSearch ? '?' + newSearch : '');
+                window.history.replaceState({}, document.title, newUrl);
+            }
+        });
+    </script>
 
 </body>
 </html>

@@ -1,0 +1,26 @@
+$kind: http-request
+url: http://127.0.0.1:3000/api/products/6ac788b7ffd0eb4f9766e8ca
+method: PUT
+body:
+  type: json
+  content: "{\r
+
+    \        \"_id\": \"6ac788b7ffd0eb4f9766e8ca\",\r
+
+    \        \"name\": \"Laptop Dell XPS 13\",\r
+
+    \        \"price\": 1000,\r
+
+    \        \"description\": \"Laptop mỏng nhẹ cao cấp dành cho sinh viên và
+    văn phòng.\",\r
+
+    \        \"image\": \"https://via.placeholder.com/200\",\r
+
+    \        \"createdAt\": \"2026-10-08T12:12:39.210Z\",\r
+
+    \        \"updatedAt\": \"2026-10-08T12:12:39.210Z\",\r
+
+    \        \"__v\": 0\r
+
+    \    }"
+order: 3000
